@@ -8,6 +8,8 @@ const auth = require("./server/middleware/auth");
 
 const app = express();
 
+const { json } = require("express");
+const { log } = require("console");
 app.use(morgan("tiny"));
 
 require("./server/db/connection");
