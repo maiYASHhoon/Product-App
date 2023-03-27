@@ -1,23 +1,51 @@
 <% include('../layouts/header.ejs') %>
 <h1>Registration</h1>
-<form action="" method="post" enctype="multipart/form-data">
-  <input type="text" autocomplete="off" name="name" placeholder="UserName" />
-  <br /><br />
-  <input type="text" autocomplete="off" name="email" placeholder="Email" />
-  <br /><br />
-  <input
-    type="text"
-    autocomplete="off"
-    name="mobile"
-    placeholder="Mobile No"
-  /><br /><br />
-  <input
-    type="password"
-    autocomplete="off"
-    name="password"
-    placeholder="Password"
-  /><br /><br />
-
-  <input type="submit" value="Register" />
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 main">
+      <form action="/sign_up" method="POST">
+        <h2>SignUp Form</h2>
+        <input
+          type="text"
+          class="box"
+          id="name"
+          name="name"
+          placeholder="Name"
+          required
+        />
+        <br />
+        <input
+          type="text"
+          class="box"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+        <br />
+        <input
+          type="text"
+          class="box"
+          id="phno"
+          name="mobile"
+          placeholder="Mobile"
+          required
+        />
+        <br />
+        <input
+          type="password"
+          class="box"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <br />
+        <input type="submit" value="Register" id="submit" />
+      </form>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
 <% include('../layouts/footer.ejs') %>
