@@ -6,18 +6,9 @@ const user_route = require("../router/userRoutes");
 
 // const JWT_SCERET = "idhiuahdiuado%!@%#*!@85615jod";
 
-// const securePassword = async (password) => {
-//   try {
-//     const passwordHash = await bcrypt.hash(password, 10);
-//     return passwordHash;
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-// };
-
 const loadRegister = async (req, res) => {
   try {
-    res.render("registration");
+    res.render("index");
   } catch (err) {
     console.log(err.message);
   }
@@ -41,11 +32,11 @@ const insertUser = async (req, res) => {
     const userData = await newUser.save();
     console.log(userData);
     // if (userData) {
-    //   res.render("registration", {
+    //   res.render("/register.ejs", {
     //     message: "You have registered successfully",
     //   });
     // } else {
-    //   res.render("registration", { message: "You're registration is failed " });
+    //   res.render("/", { message: "You're registration is failed " });
     // }
   } catch (err) {
     console.log(err.message);
@@ -58,18 +49,18 @@ const loginUser = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  // if (!email || typeof email !== "string") {
-  //   return res.json({ status: "error", error: "Invalid user Email" });
-  // }
-  // if (!password || typeof password !== "string") {
-  //   return res.json({ status: "error", error: "Invalid password" });
-  // }
-  // if (password.length < 5) {
-  //   return res.json({
-  //     status: "error",
-  //     error: "Password must be at least 5 characters",
-  //   });
-  // }
+  if (!email || typeof email !== "string") {
+    return res.json({ status: "error", error: "Invalid user Email" });
+  }
+  if (!password || typeof password !== "string") {
+    return res.json({ status: "error", error: "Invalid password" });
+  }
+  if (password.length < 5) {
+    return res.json({
+      status: "error",
+      error: "Password must be at least 5 characters",
+    });
+  }
 
   const useremail = await User.findOne({ email: email });
   // .lean(); //lean return simple object representation of document4
@@ -81,6 +72,24 @@ const loginUser = async (req, res) => {
   const isMatch = await bcrypt.compare(password, useremail.password);
   // if (await bcrypt.compare(password, user.password)) {
   // console.log("check");
+
+  // login request tokenx
+  // if (bcryptService().comparePassword(password, user.password)) {
+  //   const token = authService().issue({ id: user.id });
+  //   await OuthAccessToken.create({
+  //     user_id: user.id,
+  //     token,
+  //     user_agent: JSON.stringify(req.useragent),
+  //   });
+
+  //   user = JSON.parse(JSON.stringify(user));
+  //   return res.json({
+  //     msg: "loginSuccessful",
+  //     token,
+  //     user,
+  //   });
+
+  // }
   const token = await useremail.generateAuthToken();
   console.log("the token part after login " + token);
 
