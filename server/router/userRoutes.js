@@ -1,16 +1,41 @@
 const express = require("express");
-const user_route = express();
+const route = express.Router();
 const bodyParser = require("body-parser");
+const services = require("../services/render");
 
-user_route.use(express.json());
-user_route.use(express.urlencoded({ extended: true }));
 
-user_route.set("view engine", "ejs");
-user_route.set("views", "./views/users");
+route.use(express.json());
+route.use(express.urlencoded({ extended: true }));
+
+// route.set("view engine", "ejs");
+// route.set("views", "../../views")
 
 const userController = require("../controller/userController");
+const productController = require("../controller/productController");
 
-user_route.get("/register", userController.loadRegister);
-user_route.post("/register", userController.insertUser);
+/**
+ * @description Root route
+ * @method GET /
+ */
 
-module.exports = user_route;
+// user_route.get("/", services.homeRoutes);
+
+/**
+ * @description add users
+ * @method GET /add-user
+ */
+// user_route.get("/login", services.login);
+
+
+// APIs
+route.get("/", userController.loadRegister);
+// route.get("/register", userController.insertUser);  
+route.post("/register", userController.insertUser);  
+route.post("/login", userController.loginUser);
+
+
+
+// PRODUCT ROUTES
+
+
+module.exports = route;

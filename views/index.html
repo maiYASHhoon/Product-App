@@ -1,40 +1,53 @@
 <!-- <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./../assets/css/style.css" />
+
+    <title>Login</title>
   </head>
   <body>
-    <h1>Registration</h1>
-    <form id="reg-form">
-      <input type="text" autocomplete="off" id="username" placeholder="UserName" />
-      <input type="password" autocomplete="off" id="password" placeholder="Password" />
-      <input type="submit" value="Submit Form" />
-    </form>
+    <div class="main">
+      <div class="container">
+        <h2>Logsd,min</h2>
+        <form name="login" id="login" method="post">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
 
-    <script>
-      const form = document.getElementById("reg-form");
-      form.addEventListener("submit", registerUser);
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
 
-      async function registerUser(event) {
-        event.preventDefault();
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
+          <input type="submit" name="submit" value="Login" />
+          <p>Not created account <a href="./users/registration.ejs">Sign In</a></p>
+        </form>
+      </div>
+    </div>
 
-        const result = await fetch("api/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        }).then((res) => res.json());
-        console.log(result);
-      }
-    </script>
+    <div class="main">
+      <div class="container">
+      <form id="form" name="form" method="POST">
+          <h2>Sign In</h2>
+  
+          <label for="fname">First Name</label>
+          <input id="fname" type="text" name="fname">
+  
+          <label for="lname">Last Name</label>
+          <input  id="lname" type="text" id="lname" name="lname">
+  
+          <label for="email">Email</label>
+          <input id="email"  type="email" name="email">
+  
+          <label  for="password">Password</label>
+          <input id="password" type="password" id="password" name="password">
+  
+          <input id="sub-btn" type="submit" name="submit" value="Sign In" />
+          <p>Already a User?  <a href="./users/login.ejs">Login</a></p>
+  
+      </form>
+      </div>
+      </div>
+  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/login.js"></script>
+    
   </body>
 </html> -->
